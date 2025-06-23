@@ -41,8 +41,9 @@ parser = StrOutputParser()
 
 with st.sidebar:
     st.header('Choose a theme and the gender of the protagonist.')
-    theme = st.selectbox('theme', ('Action and Adventure', "bedtime story
-", "Full of hope and inspiring"))
+    theme = st.selectbox('theme', ('Action and Adventure', 
+                                   "bedtime story",
+ "Full of hope and inspiring"))
     gender = st.selectbox('Gender', ('male', 'female'), key="gender_selectbox")
 
 st.title('This is an app that generates stories.')
