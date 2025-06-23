@@ -18,7 +18,7 @@ api_key = os.getenv("OPENAI_API_KEY")
 print("API Key:", os.getenv("OPENAI_API_KEY"))
 prompt = ChatPromptTemplate.from_messages([
     ("system",
-        """请你讲一个主题是关于{theme}的故事，主角的性别是{Gender}这是一个适合孩子们看的童话故事，请用活泼、简单、充满想象力的语言来讲故事，不要太长（大约 300~500 字），要让孩子听了很开心也能学到知识。""",
+        """Please tell a story with the theme of {theme} and the protagonist's gender being {Gender}. This should be a fairy tale suitable for children, told in lively, simple and imaginative language. It should not be too long (about 300 to 500 words), so that children can enjoy it while also learning something.""",
      ),
     ("human", "{input}")
 ])
@@ -40,14 +40,15 @@ parser = StrOutputParser()
 # 在columns里，用selectbox会导致streamlit内部检索id出错，所以要用唯一的 key
 
 with st.sidebar:
-    st.header('选择一个主题和主人公性别')
-    theme = st.selectbox('主题', ('动作与冒险', '睡前故事', "充满希望和鼓舞人心"))
+    st.header('Choose a theme and the gender of the protagonist.')
+    theme = st.selectbox('theme', ('Action and Adventure', 'bedtime story
+', "Full of hope and inspiring"))
     gender = st.selectbox('Gender', ('male', 'female'), key="gender_selectbox")
 
-st.title('这是一个生成故事的app')
+st.title('This is an app that generates stories.')
 
 input = st.text_area(
-    "请输入提示，以便得到你想要的故事，你可以命名主人公的名字，爱好等等,但是你也以选择不用提示，只选择左边的主题和性别直接生成故事")
+    "Please provide a prompt so that we can generate the story you desire. You can name the protagonist's name, hobbies, etc. However, you can also choose not to provide a prompt and simply select the topic and gender to generate the story directly.")
 
 button = st.button("Please click here to generate a story.")
 
@@ -70,8 +71,7 @@ chain = prompt | llm | parser
 
 if button:
     placeholder = st.empty()
-    if theme == "动作与冒险":
-        out = chain.invoke({
+    out = chain.invoke({
             "input": input,
             "Gender": gender,
             "theme": theme
