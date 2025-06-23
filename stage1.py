@@ -18,30 +18,16 @@ col1, col2 = st.columns([1, 4])
 with col1:
     with st.sidebar:
         st.sidebar.header('选择一个主题和主人公性别')
-        st.selectbox('主题', ('动作与冒险', '睡前故事',"充满希望和鼓舞人心"))
-        theme=st.selectbox('主题', ('动作与冒险', '睡前故事',"充满希望和鼓舞人心"))
+        theme=st.selectbox('主题', ('动作与冒险', '睡前故事',"充满希望和鼓舞人心")，key="gender_selectbox")
         gender = st.selectbox('Gender', ('male', 'female'))
         
-prompt1 = ChatPromptTemplate.from_messages([
+prompt = ChatPromptTemplate.from_messages([
     ("system", 
-        """请你讲一个主题是关于动作和冒险的故事，主角的性别是{Gender}这是一个适合孩子们看的童话故事，请用活泼、简单、充满想象力的语言来讲故事，不要太长（大约 300~500 字），要让孩子听了很开心也能学到知识。""",
+        """请你讲一个主题是关于{theme}的故事，主角的性别是{Gender}这是一个适合孩子们看的童话故事，请用活泼、简单、充满想象力的语言来讲故事，不要太长（大约 300~500 字），要让孩子听了很开心也能学到知识。""",
     ),
-    ("human", "{input}"),
+    ("human", "{input}")
 ])
 
-prompt2 = ChatPromptTemplate.from_messages([
-    ("system", 
-        """请你讲一个主题是关于睡前故事的故事，主角的性别是{Gender}这是一个适合孩子们看的童话故事，请用活泼、简单、充满想象力的语言来讲故事，不要太长（大约 300~500 字），要让孩子听了很开心也能学到知识。"""
-    ),
-    ("human", "{input}"),
-])
-
-prompt3 = ChatPromptTemplate.from_messages([
-    ("system", 
-        """请你讲一个主题是关于充满希望和鼓舞的故事，主角的性别是{Gender}这是一个适合孩子们看的童话故事，请用活泼、简单、充满想象力的语言来讲故事，不要太长（大约 300~500 字），要让孩子听了很开心也能学到知识。"""
-    ),
-    ("human", "{input}"),
-])
 
 from langchain.callbacks.base import AsyncCallbackHandler
 from langchain.callbacks.base import BaseCallbackHandler
@@ -65,7 +51,7 @@ with col2:
     input = st.text_area("请输入提示，以便得到你想要的故事，你可以命名主人公的名字，爱好等等,但是你也以选择不用提示，只选择左边的主题和性别直接生成故事/Please provide a prompt so that we can generate the story you desire. You can name the protagonist's name, hobbies, etc. However, you can also choose not to provide a prompt and simply select the topic and gender to generate the story directly.")
 
     button=st.button("请点击这里来生成故事/Please click here to generate a story.")
-
+    if button
     placeholder = st.empty() 
     llm = ChatOpenAI(
             model="deepseek-chat",            
@@ -81,23 +67,13 @@ with col2:
             name="callbacks",
             description="A list of callbacks to use for streaming"
         ))
-    chain1= prompt1 | llm |parser
-    chain2= prompt2 | llm |parser
-    chain3= prompt3 | llm |parser
-    if theme=="动作与冒险":
-            out= chain1.invoke({
+    chain= prompt | llm |parser
+    placeholder = st.empty() 
+        if theme=="动作与冒险":
+            out= chain.invoke({
                 "input":input,
-                 "Gender":gender
-                 } )
-        if theme=="睡前故事":
-            out= chain2.invoke({
-                "input":input,
-                 "Gender":gender
-                 } )
-        if theme=="充满希望和鼓舞人心":
-            out= chain3.invoke({
-                "input":input,
-                 "Gender":gender
+                 "Gender":gender,
+                 "theme":theme
                  } )
         
         
