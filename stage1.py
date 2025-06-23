@@ -59,7 +59,7 @@ parser=StrOutputParser()
 
 
 with col2:
-    st.title('这是一个生成故事的app/This is an app that generates stories.')
+    st.title('这是一个生成童话故事的app/This is an app that generates fairy tale stories.')
 
     input = st.text_area("请输入提示，以便得到你想要的故事，你可以命名主人公的名字，爱好等等,但是你也以选择不用提示，只选择左边的主题和性别直接生成故事/Please provide a prompt so that we can generate the story you desire. You can name the protagonist's name, hobbies, etc. However, you can also choose not to provide a prompt and simply select the topic and gender to generate the story directly.")
 
