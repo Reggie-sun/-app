@@ -18,7 +18,7 @@ api_key = os.getenv("OPENAI_API_KEY")
 print("API Key:", os.getenv("OPENAI_API_KEY"))
 prompt = ChatPromptTemplate.from_messages([
     ("system",
-        """Please tell a story with the theme of {theme} and the protagonist's gender being {Gender}. This should be a fairy tale suitable for children, told in lively, simple and imaginative language. It should not be too long (about 300 to 500 words), so that children can enjoy it while also learning something.""",
+        """Please tell a story with the theme of {theme} and the protagonist's gender being {Gender}. This should be a fairy tale suitable for children, told in lively, simple and imaginative language. It should not be too long (about 300 to 500 words), so that children can enjoy it while also learning something.And also display how many words you have printed.""",
      ),
     ("human", "{input}")
 ])
