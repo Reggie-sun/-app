@@ -59,11 +59,11 @@ parser=StrOutputParser()
 
 
 with col2:
-    st.title('这是一个生成故事的app')
+    st.title('这是一个生成故事的app/This is an app that generates stories.')
 
-    input = st.text_area("请输入提示，以便得到你想要的故事，你可以命名主人公的名字，爱好等等,但是你也以选择不用提示，只选择左边的主题和性别直接生成故事")
+    input = st.text_area("请输入提示，以便得到你想要的故事，你可以命名主人公的名字，爱好等等,但是你也以选择不用提示，只选择左边的主题和性别直接生成故事/Please provide a prompt so that we can generate the story you desire. You can name the protagonist's name, hobbies, etc. However, you can also choose not to provide a prompt and simply select the topic and gender to generate the story directly.")
 
-    button=st.button("Please click here to generate a story.")
+    button=st.button("请点击这里来生成故事/Please click here to generate a story.")
 
     placeholder = st.empty() 
     llm = ChatOpenAI(
