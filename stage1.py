@@ -13,7 +13,14 @@ from langchain.prompts import ChatPromptTemplate,SystemMessagePromptTemplate,Hum
 from langchain_core.runnables.history import RunnableWithMessageHistory
 from IPython.display import display, Markdown
 from langchain_core.runnables.base import RunnableSerializable
-from langchain_core.tools import tool
+
+col1, col2 = st.columns([1, 4])
+with col1:
+    with st.sidebar:
+        st.header('选择一个主题和主人公性别')
+        st.selectbox('主题', ('动作与冒险', '睡前故事',"充满希望和鼓舞人心"))
+        gender = st.selectbox('Gender', ('male', 'female'))
+        
 prompt1 = ChatPromptTemplate.from_messages([
     ("system", 
         """请你讲一个主题是关于动作和冒险的故事，主角的性别是{Gender}这是一个适合孩子们看的童话故事，请用活泼、简单、充满想象力的语言来讲故事，不要太长（大约 300~500 字），要让孩子听了很开心也能学到知识。""",
@@ -50,13 +57,6 @@ class StreamHandler(BaseCallbackHandler):
 from langchain_core.output_parsers import StrOutputParser
 parser=StrOutputParser()
 
-col1, col2 = st.columns([1, 4])
-
-with col1:
-    with st.sidebar:
-        st.header('选择一个主题和主人公性别')
-        st.selectbox('主题', ('动作与冒险', '睡前故事',"充满希望和鼓舞人心"))
-        gender = st.selectbox('Gender', ('male', 'female'))
 
 with col2:
     st.title('这是一个生成故事的app')
