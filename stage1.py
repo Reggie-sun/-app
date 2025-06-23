@@ -17,7 +17,7 @@ from langchain_core.runnables.base import RunnableSerializable
 col1, col2 = st.columns([1, 4])
 with col1:
     with st.sidebar:
-        st.header('选择一个主题和主人公性别')
+        st.sidebar.header('选择一个主题和主人公性别')
         st.selectbox('主题', ('动作与冒险', '睡前故事',"充满希望和鼓舞人心"))
         gender = st.selectbox('Gender', ('male', 'female'))
         
