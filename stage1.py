@@ -19,6 +19,7 @@ with col1:
     with st.sidebar:
         st.sidebar.header('选择一个主题和主人公性别')
         st.selectbox('主题', ('动作与冒险', '睡前故事',"充满希望和鼓舞人心"))
+        theme=st.selectbox('主题', ('动作与冒险', '睡前故事',"充满希望和鼓舞人心"))
         gender = st.selectbox('Gender', ('male', 'female'))
         
 prompt1 = ChatPromptTemplate.from_messages([
@@ -83,9 +84,18 @@ with col2:
     chain1= prompt1 | llm |parser
     chain2= prompt2 | llm |parser
     chain3= prompt3 | llm |parser
-    if button:
-        placeholder = st.empty() 
-        out= chain1.invoke({
+    if theme=="动作与冒险":
+            out= chain1.invoke({
+                "input":input,
+                 "Gender":gender
+                 } )
+        if theme=="睡前故事":
+            out= chain2.invoke({
+                "input":input,
+                 "Gender":gender
+                 } )
+        if theme=="充满希望和鼓舞人心":
+            out= chain3.invoke({
                 "input":input,
                  "Gender":gender
                  } )
