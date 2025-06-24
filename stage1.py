@@ -18,7 +18,20 @@ api_key = os.getenv("OPENAI_API_KEY")
 print("API Key:", os.getenv("OPENAI_API_KEY"))
 prompt = ChatPromptTemplate.from_messages([
     ("system",
-        """Please tell a story with the theme of {theme} and the protagonist's gender being {Gender}. This should be a fairy tale suitable for children, told in lively, simple and imaginative language. The story must be divided into exactly {pages} pages.Maximum of 10 pages generated. Each page should be clearly numbered and labeled, and the story should end at the {pages}th page. Make sure the length of the story is evenly distributed across the pages.Users can change the storyline according to their input.so that children can enjoy it while also learning something.And the page numbers for each page should also be displayed.You need to do it like you did for each page, because I will also insert images later. Place the app's title and the user's input on the first page, and all the subsequent content should be articles that can be scrolled through.""",
+        """Please tell a story with the theme of {theme} and the protagonist's gender being {Gender}. 
+        This should be a fairy tale suitable for children, told in lively, simple and imaginative language. 
+        The story must be divided into exactly {pages} pages.Maximum of 10 pages generated. Each page should be clearly numbered and labeled,
+          and the story should end at the {pages}th page. Make sure the length of the story is evenly distributed across the pages
+          .Users can change the storyline according to their input.so that children can enjoy it while also learning something.
+          And the page numbers for each page should also be displayed.You need to do it like you did for each page, because I will also insert images later. 
+          The stories you create should have different contents and depths for children of different ages,this is the{age}.
+          The type of the character can also be selected,this is the{character}
+          The character's personality traits can also be selected,this is the {personality_traits}
+          The hobbies and can also be selected.this is the{hobbies}
+          Background story can also be selected,this is the {background}
+          The theme for educational content can also be chosen,this is the {moral}
+          Place the app's title and the user's input on the first page, and all the subsequent content should be articles that can be scrolled through.
+          Ultimately, the user's input should be given priority. If the user's input conflicts with what you have set, the user's input should take precedence.Ultimately, the user's input should be the priority. If the user's input conflicts with what you have set, the user's input should take precedence."""
      ),
     ("human", "{input}")
 ])
@@ -46,6 +59,12 @@ with st.sidebar:
  "Full of hope and inspiring"))
     gender = st.selectbox('Gender', ('male', 'female'), key="gender_selectbox")
     pages=st.selectbox('pages',("1",'2','3','4','5','6','7','8','9','10'),key="gender_page")
+    age=st.selectbox("age",("From 1 to 3 years old,4 to 6 years old","7 to 9 years old)","10 to 13 years old"))
+    character=st.selectbox('character_type',("Human", "Animal", "Robot", "Alien", "Magical creature"))
+    personality_traits=st.selectbox('Personality traits',("Brave", "Curious", "Kind", "Funny", "Shy", "Clever"))
+    hobbies=st.selectbox('hobbies',("Drawing", "Flying", "Exploring", "Reading", "Cooking", "Solving puzzles"))
+    background=st.selectbox('background',("Fantasy Kingdom", "Deep Space", "Jungle", "Underwater World", "Toyland", "City at night"))
+    moral=st.selectbox('moral',("Friendship", "Honesty", "Bravery", "Creativity", "Teamwork", "Self-love"))
 
 st.title('This is an app that generates stories.')
 
@@ -77,5 +96,11 @@ if button:
             "input": input,
             "Gender": gender,
             "theme": theme,
-            "pages":pages
+            "pages":pages,
+            "age":age,
+            "character":character,
+            "personality_traits":personality_traits,
+            "hobbies":hobbies,
+            "background":background,
+            "moral":moral
         })
