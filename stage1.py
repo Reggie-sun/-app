@@ -45,7 +45,7 @@ with st.sidebar:
                                    "bedtime story",
  "Full of hope and inspiring"))
     gender = st.selectbox('Gender', ('male', 'female'), key="gender_selectbox")
-    page=st.selectbox('page',(1,2,3,4,5,6,7,8,9,10),key="gender_page")
+    pages=st.selectbox('page',(1,2,3,4,5,6,7,8,9,10),key="gender_page")
 
 st.title('This is an app that generates stories.')
 
@@ -77,5 +77,5 @@ if button:
             "input": input,
             "Gender": gender,
             "theme": theme,
-            "page":page
+            "pages":pages
         })
