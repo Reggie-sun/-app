@@ -18,7 +18,7 @@ api_key = os.getenv("OPENAI_API_KEY")
 print("API Key:", os.getenv("OPENAI_API_KEY"))
 prompt = ChatPromptTemplate.from_messages([
     ("system",
-        """Please tell a story with the theme of {theme} and the protagonist's gender being {Gender}. This should be a fairy tale suitable for children, told in lively, simple and imaginative language. It should not be too long (about 300 to 500 words), so that children can enjoy it while also learning something.And also display how many words you have printed.""",
+        """Please tell a story with the theme of {theme} and the protagonist's gender being {Gender}. This should be a fairy tale suitable for children, told in lively, simple and imaginative language. Be able to freely choose the number of {pages} to generate, Maximum of 10 pages generated.so that children can enjoy it while also learning something.And the page numbers for each page should also be displayed.""",
      ),
     ("human", "{input}")
 ])
@@ -45,6 +45,7 @@ with st.sidebar:
                                    "bedtime story",
  "Full of hope and inspiring"))
     gender = st.selectbox('Gender', ('male', 'female'), key="gender_selectbox")
+    page=st.selectbox('page',(1,2,3,4,5,6,7,8,9,10)key="gender_page")
 
 st.title('This is an app that generates stories.')
 
