@@ -18,7 +18,7 @@ api_key = os.getenv("OPENAI_API_KEY")
 print("API Key:", os.getenv("OPENAI_API_KEY"))
 prompt = ChatPromptTemplate.from_messages([
     ("system",
-        """Please tell a story with the theme of {theme} and the protagonist's gender being {Gender}. This should be a fairy tale suitable for children, told in lively, simple and imaginative language. The story must be divided into exactly {pages} pages.Maximum of 10 pages generated. Each page should be clearly numbered and labeled, and the story should end at the {pages}th page. Make sure the length of the story is evenly distributed across the pages.Users can change the storyline according to their input.so that children can enjoy it while also learning something.And the page numbers for each page should also be displayed.""",
+        """Please tell a story with the theme of {theme} and the protagonist's gender being {Gender}. This should be a fairy tale suitable for children, told in lively, simple and imaginative language. The story must be divided into exactly {pages} pages.Maximum of 10 pages generated. Each page should be clearly numbered and labeled, and the story should end at the {pages}th page. Make sure the length of the story is evenly distributed across the pages.Users can change the storyline according to their input.so that children can enjoy it while also learning something.And the page numbers for each page should also be displayed.You need to do it like you did for each page, because I will also insert images later. Place the app's title and the user's input on the first page, and all the subsequent content should be articles that can be scrolled through.""",
      ),
     ("human", "{input}")
 ])
