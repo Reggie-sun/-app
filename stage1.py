@@ -59,7 +59,7 @@ with st.sidebar:
  "Full of hope and inspiring"))
     gender = st.selectbox('Gender', ('male', 'female'), key="gender_selectbox")
     pages=st.selectbox('pages',("1",'2','3','4','5','6','7','8','9','10'),key="gender_page")
-    age=st.selectbox("age",("From 1 to 3 years old,4 to 6 years old","7 to 9 years old","10 to 13 years old"))
+    age=st.selectbox("age",("From 1 to 3 years old","4 to 6 years old","7 to 9 years old","10 to 13 years old"))
     character=st.selectbox('character_type',("Human", "Animal", "Robot", "Alien", "Magical creature"))
     personality_traits=st.selectbox('Personality traits',("Brave", "Curious", "Kind", "Funny", "Shy", "Clever"))
     hobbies=st.selectbox('hobbies',("Drawing", "Flying", "Exploring", "Reading", "Cooking", "Solving puzzles"))
