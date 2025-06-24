@@ -53,13 +53,13 @@ parser = StrOutputParser()
 # 在columns里，用selectbox会导致streamlit内部检索id出错，所以要用唯一的 key
 
 with st.sidebar:
-    st.header('Choose a theme and the gender of the protagonist.')
+    st.header('Select the features you wish to input.')
     theme = st.selectbox('theme', ('Action and Adventure', 
                                    "bedtime story",
  "Full of hope and inspiring"))
     gender = st.selectbox('Gender', ('male', 'female'), key="gender_selectbox")
     pages=st.selectbox('pages',("1",'2','3','4','5','6','7','8','9','10'),key="gender_page")
-    age=st.selectbox("age",("From 1 to 3 years old,4 to 6 years old","7 to 9 years old)","10 to 13 years old"))
+    age=st.selectbox("age",("From 1 to 3 years old,4 to 6 years old","7 to 9 years old","10 to 13 years old"))
     character=st.selectbox('character_type',("Human", "Animal", "Robot", "Alien", "Magical creature"))
     personality_traits=st.selectbox('Personality traits',("Brave", "Curious", "Kind", "Funny", "Shy", "Clever"))
     hobbies=st.selectbox('hobbies',("Drawing", "Flying", "Exploring", "Reading", "Cooking", "Solving puzzles"))
