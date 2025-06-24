@@ -69,7 +69,7 @@ with st.sidebar:
 st.title('This is an app that generates stories.')
 
 input = st.text_area(
-    "Please provide a prompt so that we can generate the story you desire. You can name the protagonist's name, hobbies, etc. However, you can also choose not to provide a prompt and simply select the topic and gender to generate the story directly.")
+    "Please provide some hints so that you can get the fairy tale you want. Of course, you don't have to choose the hints; you can simply select them from the columns on the left sidebar to generate the story.")
 
 button = st.button("Please click here to generate a story.")
 
